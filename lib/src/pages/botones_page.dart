@@ -12,9 +12,7 @@ class BotonesPage extends StatelessWidget {
             _fondoApp(),
             SingleChildScrollView(
               child: Column(
-                children: <Widget>[
-                  _titulos(),
-                ],
+                children: <Widget>[_titulos(), _botonesRedondeados()],
               ),
             )
           ],
@@ -22,6 +20,7 @@ class BotonesPage extends StatelessWidget {
         bottomNavigationBar: _bottomNavigationBar(context));
   }
 
+//---Estilo del fondo de la pagina
   Widget _fondoApp() {
     final gradiente = Container(
       width: double.infinity,
@@ -56,6 +55,7 @@ class BotonesPage extends StatelessWidget {
     );
   }
 
+//---TITULO DE LA PAGINA
   Widget _titulos() {
     return SafeArea(
       child: Container(
@@ -80,6 +80,7 @@ class BotonesPage extends StatelessWidget {
     );
   }
 
+//---BottomNavigator
   Widget _bottomNavigationBar(BuildContext context) {
     return Theme(
       data: Theme.of(context).copyWith(
@@ -96,6 +97,53 @@ class BotonesPage extends StatelessWidget {
           BottomNavigationBarItem(
               icon: Icon(Icons.supervised_user_circle, size: 30.0),
               title: Container()),
+        ],
+      ),
+    );
+  }
+
+  Widget _botonesRedondeados() {
+    return Table(
+      children: [
+        TableRow(children: [
+          _crearBotonRedondeado(),
+          _crearBotonRedondeado(),
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(),
+          _crearBotonRedondeado(),
+        ]),
+        TableRow(children: [
+          _crearBotonRedondeado(),
+          _crearBotonRedondeado(),
+        ])
+      ],
+    );
+  }
+
+  Widget _crearBotonRedondeado() {
+    return Container(
+      height: 180.0,
+      margin: EdgeInsets.all(15.0),
+      decoration: BoxDecoration(
+          color: Color.fromRGBO(62, 66, 107, 0.7),
+          borderRadius: BorderRadius.circular(20.0)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          CircleAvatar(
+            backgroundColor: Colors.pinkAccent,
+            radius: 35.0,
+            child: Icon(
+              Icons.swap_calls,
+              color: Colors.white,
+              size: 30.0,
+            ),
+          ),
+          Text('Holaa', style: TextStyle(color: Colors.pinkAccent)),
+          SizedBox(
+            height: 5.0,
+          )
         ],
       ),
     );
