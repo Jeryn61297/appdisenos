@@ -1,5 +1,6 @@
 //import 'dart:js';
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -63,13 +64,13 @@ class BotonesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('Classify transaction',
+            Text('Oferta Educatica',
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold)),
             SizedBox(height: 10.0),
-            Text('Classify this transaction into a particular category',
+            Text('La oferta educativa consta de las siguientes carreras:',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,
@@ -106,45 +107,49 @@ class BotonesPage extends StatelessWidget {
     return Table(
       children: [
         TableRow(children: [
-          _crearBotonRedondeado(),
-          _crearBotonRedondeado(),
+          _crearBotonRedondeado(Colors.blue, Icons.school, 'Informatica'),
+          _crearBotonRedondeado(Colors.orange, Icons.school, 'Contador'),
         ]),
         TableRow(children: [
-          _crearBotonRedondeado(),
-          _crearBotonRedondeado(),
+          _crearBotonRedondeado(Colors.red, Icons.school, 'Administración'),
+          _crearBotonRedondeado(
+              Colors.purple, Icons.school, 'Gestion Empresarial'),
         ]),
         TableRow(children: [
-          _crearBotonRedondeado(),
-          _crearBotonRedondeado(),
+          _crearBotonRedondeado(Colors.green, Icons.school, 'Biologia'),
+          _crearBotonRedondeado(Colors.lime, Icons.school, 'Agronomia'),
         ])
       ],
     );
   }
 
-  Widget _crearBotonRedondeado() {
-    return Container(
-      height: 180.0,
-      margin: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(62, 66, 107, 0.7),
-          borderRadius: BorderRadius.circular(20.0)),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          CircleAvatar(
-            backgroundColor: Colors.pinkAccent,
-            radius: 35.0,
-            child: Icon(
-              Icons.swap_calls,
-              color: Colors.white,
-              size: 30.0,
+  Widget _crearBotonRedondeado(Color color, IconData icono, String texto) {
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 0.0, sigmaY: 0.0),
+      child: Container(
+        height: 180.0,
+        margin: EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107, 0.7),
+            borderRadius: BorderRadius.circular(20.0)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            CircleAvatar(
+              backgroundColor: color,
+              radius: 35.0,
+              child: Icon(
+                icono,
+                color: Colors.white,
+                size: 30.0,
+              ),
             ),
-          ),
-          Text('Holaa', style: TextStyle(color: Colors.pinkAccent)),
-          SizedBox(
-            height: 5.0,
-          )
-        ],
+            Text(texto, style: TextStyle(color: color)),
+            SizedBox(
+              height: 5.0,
+            )
+          ],
+        ),
       ),
     );
   }
